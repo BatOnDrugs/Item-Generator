@@ -13,14 +13,16 @@ class Weapon():
         self.special_power = ""
 
 class Armour():
-    def __init__(self, armour_piece, rarity, armour_class, armour_stats_dict, is_magical = False):
+    def __init__(self, armour_piece, name, rarity, armour_class, armour_stats_dict, effect = "has no magical effects", is_magical = False):
+        self.name = name
         self.armour_piece = armour_piece
         self.rarity = rarity
         self.armour_class = armour_class
         self.defense = armour_stats_dict["defense"]
         self.weight = armour_stats_dict["weight"]
+        self.effect = effect
         self.is_magical = False
-        self.special_power = ""
+        
 
 
 

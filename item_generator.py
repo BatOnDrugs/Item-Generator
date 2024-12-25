@@ -6,13 +6,17 @@ import random
 
 with open("weapon_types.md", "r") as content:
     weapon_types = content.read().split("\n")
+with open("armour_pieces.md", "r") as content:
+    armour_types = content.read().split("\n")
 
-item_types = ["weapon"]
+item_types = ["weapon", "armour"]
 rarities = ["common", "uncommon", "rare", "very rare", "ultra rare", "legendary", "mythical"]
-# note to self, what i need for weapon class: weapon_type, name, rarity, weapon_stats_dict, effect, is_magical
+armour_classes = ["Cloth", "Light", "Medium", "Heavy"]
+
 def item_generator():
     item_type = random.choice(item_types)
     rarity = "".join(random.choices(rarities, weights = (60, 40, 30, 20, 10, 5, 1), k=1))
+    # what i need for weapon class: weapon_type, name, rarity, weapon_stats_dict, effect, is_magical
     if item_type == "weapon":
         weapon_type = random.choice(weapon_types)
         weapon_name = weapon_name_generator(weapon_type)
@@ -25,9 +29,21 @@ def item_generator():
             weapon = Weapon(weapon_type, weapon_name, rarity, weapon_stats)
         return weapon
 
+    # what i need for armour class:   armour_piece, name, rarity, armour_class, armour_stats_dict, effect, is_magical 
+    elif item_type == "armour":
+        armour_piece = random.choice(armour_types)
+        armour_class = random.choice(armour_classes)
+        armour_name = armour_name_generator(armour_piece, armour_class)     
+        armour_stats = armour_stats_generator(rarity, armour_piece, armour_class)
+        magical = is_magical(rarity)
+        if magical == True:
+            effect = armour_power_picker()
+            armour = Armour(armour_piece, armour_name, rarity, armour_class, armour_stats, effect, magical)
+        else:
+            armour = Armour(armour_piece, armour_name, rarity, armour_class, armour_stats)
+        return armour
+
         
-    else:
-        print("".join(rarity))
 
 def is_magical(rarity):
     options = [True, False]
@@ -47,10 +63,14 @@ def is_magical(rarity):
         return True
 
 item_one = item_generator()
-print(f"""you found a {item_one.name}, it's a {item_one.rarity} item.
-It deals {item_one.dmg} damage, and it's speed is {item_one.attack_speed}, in total thats {item_one.dps} damage per second!
-It has a range of {item_one.range} and weighs {item_one.weight} of whatever units makes sense!
-It {item_one.effect}!""")
+if isinstance(item_one, Weapon):
+    print(f"""you found a {item_one.name}, it's a {item_one.rarity} item.
+    It deals {item_one.dmg} damage, and it's speed is {item_one.attack_speed}, in total thats {item_one.dps} damage per second!
+    It has a range of {item_one.range} and weighs {item_one.weight} of whatever units makes sense!
+    It {item_one.effect}!""")
+elif isinstance(item_one, Armour):
+    print(f"""You found {item_one.name}, it has {item_one.defense} defense and weighs {item_one.weight}
+it {item_one.effect}!""")
 
 
         
