@@ -1,9 +1,9 @@
 import random
 
-with open("weapon_effects.md", "r") as content:
+with open("text_files/weapon_effects.md", "r") as content:
     weapon_effects_list = content.read().split("\n")
 
-with open("armour_effects.md", "r") as content:
+with open("text_files/armour_effects.md", "r") as content:
     armour_effects_list = content.read().split("\n")
 
 def weapon_power_picker():

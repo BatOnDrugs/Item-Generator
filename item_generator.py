@@ -4,9 +4,9 @@ from special_power_generator import *
 from stats_generator import *
 import random
 
-with open("weapon_types.md", "r") as content:
+with open("text_files/weapon_types.md", "r") as content:
     weapon_types = content.read().split("\n")
-with open("armour_pieces.md", "r") as content:
+with open("text_files/armour_pieces.md", "r") as content:
     armour_types = content.read().split("\n")
 
 item_types = ["weapon", "armour"]

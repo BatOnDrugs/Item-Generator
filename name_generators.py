@@ -1,9 +1,9 @@
 import random
 
-with open("weapon_names.md", "r") as content:
+with open("text_files/weapon_names.md", "r") as content:
     weapon_names_list = content.read().split("\n")
 
-with open("armour_names.md", "r") as content:
+with open("text_files/armour_names.md", "r") as content:
     armour_names_list = content.read().split("\n")
 
 def weapon_name_generator(weapon_type):
