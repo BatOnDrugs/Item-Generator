@@ -30,9 +30,9 @@ Chaos Bloom
 Zephyr Fang
 Rubber Chicken's Wrath
 Baguette of Vengeance
-Flatulence Strike
+Flatulent Strike
 Quack of Doom
-Banana Slicer
+Banana Slicing
 Sock Snagger
 Glitterstorm
 Sneeze Trigger
