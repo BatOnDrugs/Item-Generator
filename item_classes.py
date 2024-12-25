@@ -1,10 +1,11 @@
 class Weapon():
-    def __init__(self, type, name, rarity, damage, attack_speed, dps, weight, dmg_type, is_magical = False):
+    def __init__(self, type, name, rarity, damage, attack_speed, range, weight, dmg_type, is_magical = False):
         self.type = type
         self.rarity = rarity
         self.dmg = damage
         self.attack_speed = attack_speed
         self.dps = damage * attack_speed
+        self.range = range
         self.weight = weight
         self.dmg_type = dmg_type
         self.is_magical = is_magical

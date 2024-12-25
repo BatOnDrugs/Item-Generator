@@ -1,9 +1,9 @@
 Absorbs the life force of enemies to heal its wielder.
-Allows the user to teleport to wherever the weapon lands when thrown.
+Teleports the user to wherever the weapon lands when thrown.
 Freezes enemies on contact, leaving them immobilized.
 Releases a fiery shockwave upon impact, incinerating everything in a radius.
 Summons lightning to strike foes from above.
-Grows more powerful with every drop of blood it spills.
+Grows more powerful with every drop of blood it spills but it's range decreases, resets at the beggining of combat.
 Can cut through dimensions, creating small portals.
 Strikes intangible enemies like ghosts or spirits.
 Ignores all armor, dealing pure damage.
