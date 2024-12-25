@@ -14,5 +14,5 @@ def armour_name_generator(armour_piece):
     armour_name = random.choice(armour_names_list)
     return f"{armour_piece} of {armour_name}"
 
-print(armour_name_generator("Greaves"))
+
 

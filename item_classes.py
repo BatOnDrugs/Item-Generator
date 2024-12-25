@@ -1,13 +1,14 @@
 class Weapon():
-    def __init__(self, weapon_type, name, rarity, weapon_stats_dict, dmg_type, is_magical = False):
-        self.weapon_type = type
+    def __init__(self, weapon_type, name, rarity, weapon_stats_dict, effect = "has no magical effects", is_magical = False):
+        self.name = name
+        self.weapon_type = weapon_type
         self.rarity = rarity
         self.dmg = weapon_stats_dict["damage"]
         self.attack_speed = weapon_stats_dict["attack speed"]
-        self.dps = self.dmg * self.attack_speed
+        self.dps = round((self.dmg * self.attack_speed), 2)
         self.range = weapon_stats_dict["weapon range"]
         self.weight = weapon_stats_dict["weight"]
-        self.dmg_type = dmg_type
+        self.effect = effect
         self.is_magical = is_magical
         self.special_power = ""
 

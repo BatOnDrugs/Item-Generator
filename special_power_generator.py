@@ -14,5 +14,5 @@ def weapon_power_picker():
 def armour_effect_picker():
     return random.choice(armour_effects_list)
 
-print(armour_effect_picker()) 
+
 

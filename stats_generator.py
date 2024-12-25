@@ -2,6 +2,9 @@ import random
 
 def weapon_stats_generator(rarity, weapon_type): #returns a dictionary of weapon stats in this format: {"damage":float, "attack speed":float, "weapon range":float, "weight":float}
     stats_dict = {}
+    base_stats = 0.0
+    if not rarity:
+        raise Exception("rarity required")
     if rarity == "common":
         base_stats = random.randint(10, 20)
     elif rarity == "uncommon":
@@ -16,6 +19,9 @@ def weapon_stats_generator(rarity, weapon_type): #returns a dictionary of weapon
         base_stats = random.randint(50, 65)
     elif rarity == "mythical":
         base_stats = random.randint(70, 100)
+    else:
+        raise Exception("unknown rarity")
+
     if weapon_type == "Sword": # mid range stats
         damage_modifier = 1        
         speed_modifier = 1
@@ -47,7 +53,9 @@ def weapon_stats_generator(rarity, weapon_type): #returns a dictionary of weapon
     stats_dict["weapon range"] = round(base_stats * (random.random())*range_modifier, 2)
     stats_dict["weight"] = round(base_stats * (random.random()/2)*weight_modifier, 2)
 
-
+   
     return stats_dict
+
+    
 
 
