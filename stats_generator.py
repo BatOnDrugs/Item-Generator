@@ -46,10 +46,10 @@ def weapon_stats_generator(rarity, weapon_type): #returns a dictionary of weapon
         range_modifier = 0.5
         weight_modifier = 0.5
         
-    stats_dict["damage"] = round(base_stats * (random.random()+0.1*damage_modifier), 2)
-    stats_dict["attack speed"] = round(base_stats * (random.random()/speed_modifier), 2)
-    stats_dict["weapon range"] = round(base_stats * (random.random())*range_modifier, 2)
-    stats_dict["weight"] = round(base_stats * (random.random()/2)*weight_modifier, 2)
+    stats_dict["damage"] = round(base_stats * (random.random()+0.1*damage_modifier), 1)
+    stats_dict["attack speed"] = round(base_stats * (random.random()/speed_modifier), 1)
+    stats_dict["weapon range"] = round(base_stats * (random.random())*range_modifier, 1)
+    stats_dict["weight"] = round(base_stats * (random.random()/2)*weight_modifier, 1)
 
    
     return stats_dict
@@ -83,20 +83,20 @@ def armour_stats_generator(rarity, armour_piece, armour_class):
         base_stats *= 1.2
 
     if armour_piece == "Helmet":
-        stats_dict["defense"] = round(base_stats * (random.random()+0.1), 2)
-        stats_dict["weight"] = 2 * round(base_stats * 0.1, 2)
-    elif armour_piece == "Chest":
-        stats_dict["defense"] = round(base_stats * (random.random()+0.1), 2)
-        stats_dict["weight"] = 10 * round(base_stats * 0.1, 2)
+        stats_dict["defense"] = round(base_stats * (random.random()+0.1), 1)
+        stats_dict["weight"] = round(2 * base_stats * 0.1, 1)
+    elif armour_piece == "Chestpiece":
+        stats_dict["defense"] = round(base_stats * (random.random()+0.1), 1)
+        stats_dict["weight"] = round(5 * base_stats * 0.1, 1)
     elif armour_piece == "Greaves":
-        stats_dict["defense"] = round(base_stats * (random.random()+0.1), 2)
-        stats_dict["weight"] = 1 * round(base_stats * 0.1, 2)
+        stats_dict["defense"] = round(base_stats * (random.random()+0.1), 1)
+        stats_dict["weight"] = round(1 * base_stats * 0.1, 1)
     elif armour_piece == "Pants":
-        stats_dict["defense"] = round(base_stats * (random.random()+0.1), 2)
-        stats_dict["weight"] = 3 * round(base_stats * 0.1, 2)
+        stats_dict["defense"] = round(base_stats * (random.random()+0.1), 1)
+        stats_dict["weight"] = round(3 * base_stats * 0.1, 1)
     elif armour_piece == "Boots":
-        stats_dict["defense"] = round(base_stats * (random.random()+0.1), 2)
-        stats_dict["weight"] = 1 * round(base_stats * 0.1, 2)
+        stats_dict["defense"] = round(base_stats * (random.random()+0.1), 1)
+        stats_dict["weight"] = round(1 * base_stats * 0.1, 1)
     return stats_dict
 
     

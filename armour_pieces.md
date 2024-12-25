@@ -1,5 +1,5 @@
 Helmet
-Chest
+Chestpiece
 Greaves
 Pants
 Boots

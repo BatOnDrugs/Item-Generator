@@ -10,9 +10,9 @@ def weapon_name_generator(weapon_type):
     weapon_name = random.choice(weapon_names_list)
     return f"{weapon_type} of {weapon_name}"
 
-def armour_name_generator(armour_piece, armour_class):
+def armour_name_generator(armour_piece):
     armour_name = random.choice(armour_names_list)
-    return f"{armour_class} {armour_piece} of {armour_name}"
+    return f"{armour_piece} of {armour_name}"
 
 
 
