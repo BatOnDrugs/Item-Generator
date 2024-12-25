@@ -3,9 +3,9 @@ class Weapon():
         self.weapon_type = type
         self.rarity = rarity
         self.dmg = weapon_stats_dict["damage"]
-        self.attack_speed = weapon_stats_dict["attack_speed"]
+        self.attack_speed = weapon_stats_dict["attack speed"]
         self.dps = self.dmg * self.attack_speed
-        self.range = weapon_stats_dict["weapon_range"]
+        self.range = weapon_stats_dict["weapon range"]
         self.weight = weapon_stats_dict["weight"]
         self.dmg_type = dmg_type
         self.is_magical = is_magical
