@@ -72,11 +72,13 @@ if isinstance(item_one, Weapon):
         prefix = "A"
     print(f"""you found...
 {prefix} {item_one.name}!
-It's a {item_one.rarity} item.
+{item_one.rarity}
 It deals {item_one.dmg} damage, and it's speed is {item_one.attack_speed}, in total thats {item_one.dps} damage per second!
 It has a range of {item_one.range} and weighs {item_one.weight} of whatever units makes sense!
 Special power: {item_one.effect}
+Value: {item_one.value} gold
 It has been added to your inventory!""")
+    
 elif isinstance(item_one, Armour):
     if item_one.armour_piece == "Helmet" or item_one.armour_piece == "Chestpiece":
         prefix_one = "A "
@@ -87,10 +89,12 @@ elif isinstance(item_one, Armour):
     
     print(f"""You found...
 {prefix_one}{item_one.armour_class} {item_one.name}!
+{item_one.rarity}
 {prefix_two} {item_one.defense} defense and a weight of {item_one.weight} of whatever unit makes sense!
 Special power: {item_one.effect}
+Value: {item_one.value} gold
 {prefix_two} been added to your inventory!""")
-
+    
 
         
 
