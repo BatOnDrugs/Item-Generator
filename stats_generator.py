@@ -50,13 +50,4 @@ def weapon_stats_generator(rarity, weapon_type): #returns a dictionary of weapon
 
     return stats_dict
 
-print("Sword")       
-print(weapon_stats_generator("rare", "Sword"))
-print("Axe")
-print(weapon_stats_generator("rare", "Axe"))
-print("Spear")
-print(weapon_stats_generator("rare", "Spear"))
-print("Hammer")
-print(weapon_stats_generator("rare", "Hammer"))
-print("Dagger")
-print(weapon_stats_generator("rare", "Dagger"))
+
