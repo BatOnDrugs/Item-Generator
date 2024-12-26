@@ -6,7 +6,7 @@ from item_classes import *
 
 class Inventory():
     def __init__(self):
-        self.carrying_capacity = 10
+        self.carrying_capacity = 100
         self.current_load = 0
         self.storage = []
         self.slots = {}
@@ -45,7 +45,11 @@ class Inventory():
             self.storage.remove(item)
         else:
             self.storage.append(self.slots[slot_to_equip])
-            self.slots[slot_to_equip] == ""
+            self.slots.pop(slot_to_equip)
+    
+    def equip_all_possible_items(self):
+        for i in range(len(self.storage)):
+            inventory.equip_item()
     
     def check_stored_items(self):
         stored_items = ""
@@ -82,13 +86,14 @@ def add_n_items_to_inventory(inventory, n):
         else:
             print("Can't carry any more items")
             break
+    
 
 
 
 
 inventory = Inventory()
-add_n_items_to_inventory(inventory, 20)
-inventory.equip_item()
+add_n_items_to_inventory(inventory, 5)
+inventory.equip_all_possible_items()
 print(inventory.check_stored_items())
 print(inventory.check_equipped_items())
 
