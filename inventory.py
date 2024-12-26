@@ -6,12 +6,20 @@ from item_classes import *
 
 class Inventory():
     def __init__(self):
+        self.carrying_capacity = 10
+        self.current_load = 0
         self.storage = []
-        self.slots = {"Head":[], "Chest":[], "Hands":[], "Legs":[], "Feet":[], "Weapon":[]}
+        self.slots = {}
     
     def add_to_inventory(self, item):
-        self.item = item
-        self.storage.append(self.item)
+        if (self.current_load + item.weight) <= self.carrying_capacity:
+            self.item = item
+            self.storage.append(self.item)
+            return True
+        else:
+            return False
+        
+            
 
     def equip_item(self):
         if self.storage == []:
@@ -32,19 +40,56 @@ class Inventory():
             elif item.armour_piece == "Boots":
                 slot_to_equip = "Feet"
         
-        if self.slots[slot_to_equip] == []:
+        if slot_to_equip not in self.slots:
             self.slots[slot_to_equip] = item
             self.storage.remove(item)
         else:
             self.storage.append(self.slots[slot_to_equip])
             self.slots[slot_to_equip] == ""
     
-    def equipped_items(self):
+    def check_stored_items(self):
+        stored_items = ""
+        for item in self.storage:
+            if isinstance(item, Weapon):
+                stored_items = f"{stored_items}{item.name}\nSpecial Power: {item.effect}\n------------\n"
+            elif isinstance(item, Armour):
+                stored_items = f"{stored_items}{item.armour_class} {item.name}\nSpecial Power: {item.effect}\n------------\n"
+        return stored_items
+    
+    def check_equipped_items(self):
+        equipped_items = []
+        keys = [*self.slots]
         
+        for item in keys:
+                if self.slots[item]:
+                    if self.slots[item].is_magical:
+                        equipped_items.append(f"{item} slot: {self.slots[item].name}\nSpecial Power: {self.slots[item].effect}")
+                    else:
+                        equipped_items.append(f"{item} slot: {self.slots[item].name}")
+        if equipped_items:
+            return equipped_items
+        else:
+            return "No items equipped"
+    
+    # def drop_item(self, item):
 
-inventory = Inventory()   
-item = item_generator()
-inventory.add_to_inventory(item)
+
+def add_n_items_to_inventory(inventory, n):
+    for i in range(n):
+        item = item_generator()
+        if inventory.add_to_inventory(item):
+            continue
+        else:
+            print("Can't carry any more items")
+            break
+
+
+
+
+inventory = Inventory()
+add_n_items_to_inventory(inventory, 20)
 inventory.equip_item()
-print(inventory.slots)
+print(inventory.check_stored_items())
+print(inventory.check_equipped_items())
+
             
