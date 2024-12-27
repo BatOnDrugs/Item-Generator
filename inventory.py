@@ -48,11 +48,12 @@ class Inventory():
             self.slots.pop(slot_to_equip)
     
     def equip_all_possible_items(self):
-        for i in range(len(self.storage)):
+        for item in self.storage:
+            print(item.name)
             inventory.equip_item()
     
     def check_stored_items(self):
-        stored_items = ""
+        stored_items = "Items in bag:\n"
         for item in self.storage:
             if isinstance(item, Weapon):
                 stored_items = f"{stored_items}{item.name}\nSpecial Power: {item.effect}\n------------\n"
@@ -66,16 +67,25 @@ class Inventory():
         
         for item in keys:
                 if self.slots[item]:
-                    if self.slots[item].is_magical:
-                        equipped_items.append(f"{item} slot: {self.slots[item].name}\nSpecial Power: {self.slots[item].effect}")
-                    else:
-                        equipped_items.append(f"{item} slot: {self.slots[item].name}")
+                    if isinstance(self.slots[item], Armour):
+                        if self.slots[item].is_magical:
+                            equipped_items.append(f"{item} slot:\n{self.slots[item].armour_class} {self.slots[item].name}\nSpecial Power: {self.slots[item].effect}")
+                        else:
+                            equipped_items.append(f"{item} slot:\n{self.slots[item].armour_class} {self.slots[item].name}")
+                    elif isinstance(self.slots[item], Weapon):
+                        if self.slots[item].is_magical:
+                            equipped_items.append(f"{item} slot:\n{self.slots[item].name}\nSpecial Power: {self.slots[item].effect}")
+                        else:
+                            equipped_items.append(f"{item} slot:\n{self.slots[item].name}")
         if equipped_items:
-            return equipped_items
+            equipped_items_return = ")))Currently Equipped(((\n"
+            for item in equipped_items:
+                equipped_items_return = f"{equipped_items_return}{item}\n----------------------\n"
+            return equipped_items_return
         else:
             return "No items equipped"
     
-    # def drop_item(self, item):
+    #def drop_item(self, item):
 
 
 def add_n_items_to_inventory(inventory, n):
