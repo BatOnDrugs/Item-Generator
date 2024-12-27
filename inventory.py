@@ -11,6 +11,7 @@ class Inventory():
         self.storage = []
         self.slots = {}
         self._used_slots = []
+
     def add_to_inventory(self, item):
         if (self.current_load + item.weight) <= self.carrying_capacity:
             self.item = item
@@ -20,12 +21,13 @@ class Inventory():
             return False
         
             
-
+    # Equips items from inventory into empty slots
     def equip_all_possible_items(self):
         items_to_equip = self.storage[:]
         for item in items_to_equip:
             self.equip_item(item)
-
+    
+    # Equips top item from invetory into a slot
     def equip_item(self, item):
         if not self.storage:
             return "No items in inventory"
@@ -50,6 +52,7 @@ class Inventory():
             self.slots[slot_to_equip] = item
             self.storage.remove(item)
     
+    # returns a string listing out items in storage
     def check_stored_items(self):
         stored_items = "Items in bag:\n"
         for item in self.storage:
@@ -58,7 +61,8 @@ class Inventory():
             elif isinstance(item, Armour):
                 stored_items = f"{stored_items}{item.armour_class} {item.name}\nDefense: {item.defense}\nSpecial Power: {item.effect}\n------------\n"
         return stored_items
-        
+
+    # returns a string listing equipped items   
     def check_equipped_items(self):
         equipped_items = []
         self._used_slots = [*self.slots]
@@ -83,6 +87,7 @@ class Inventory():
         else:
             return "No items equipped"
     
+    # returns unused slots
     def check_empty_slots(self):
         possible_slots = ("Head", "Chest", "Hands", "Legs", "Feet", "Weapon")
         empty_slots = list(possible_slots)
@@ -91,6 +96,7 @@ class Inventory():
                 empty_slots.remove(item)       
         return f"Empty Slots: {empty_slots}"
     
+    # Sorts storage in a descending order by a specified sorting value, or by defense/damage by default
     def sort_storage(self, sort_by = "Unspecified"):   
         # make a list of armour pieces and a list of Weapons
         armour_in_storage = []
