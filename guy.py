@@ -35,6 +35,14 @@ class Guy():
         print(f"{self.name} got hit by {other.name} for {other.strength} damage!")
         self.health -= other.strength / 2
         print(f"{self.name} has {self.health} health left!")
+
+
+    def health_bar(self):
+        self.health_bar = "[====================]"
+        print(self.health_bar)
+
+    #def damage_health_bar(self):
+
         
         
 
