@@ -1,10 +1,10 @@
 import random
+import json
+with open("data/item_data.json", "r") as item_data:
+    data = json.load(item_data)
 
-with open("text_files/weapon_effects.md", "r") as content:
-    weapon_effects_list = content.read().split("\n")
-
-with open("text_files/armour_effects.md", "r") as content:
-    armour_effects_list = content.read().split("\n")
+weapon_effects_list = data["weapon_effects"]
+armour_effects_list = data["armour_effects"]
 
 def weapon_power_picker():
     return random.choice(weapon_effects_list)

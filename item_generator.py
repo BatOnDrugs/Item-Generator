@@ -3,11 +3,12 @@ from name_generators import*
 from special_power_generator import *
 from stats_generator import *
 import random
+import json
 
-with open("text_files/weapon_types.md", "r") as content:
-    weapon_types = content.read().split("\n")
-with open("text_files/armour_pieces.md", "r") as content:
-    armour_types = content.read().split("\n")
+with open("data/item_data.json", "r") as item_data:
+    data = json.load(item_data)
+weapon_types = data["weapon_types"]
+armour_types = data["armour_pieces"]
 
 item_types = ["weapon", "armour"]
 rarities = ["common", "uncommon", "rare", "very rare", "ultra rare", "legendary", "mythical"]

@@ -1,10 +1,11 @@
 import random
+import json
 
-with open("text_files/weapon_names.md", "r") as content:
-    weapon_names_list = content.read().split("\n")
+with open("data/item_data.json", "r") as item_data:
+    data = json.load(item_data)
 
-with open("text_files/armour_names.md", "r") as content:
-    armour_names_list = content.read().split("\n")
+weapon_names_list = data["weapon_names"]
+armour_names_list = data["armour_names"]
 
 def weapon_name_generator(weapon_type):
     weapon_name = random.choice(weapon_names_list)
