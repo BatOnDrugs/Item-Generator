@@ -47,7 +47,7 @@ class Inventory():
             elif item.armour_piece == "Boots":
                 slot_to_equip = "Feet"
 
-        if slot_to_equip and slot_to_equip not in self.slots:
+        if slot_to_equip not in self.slots:
             # Equip the item if the slot is empty
             self.slots[slot_to_equip] = item
             self.storage.remove(item)
