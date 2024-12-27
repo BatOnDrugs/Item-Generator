@@ -10,7 +10,7 @@ class Inventory():
         self.current_load = 0
         self.storage = []
         self.slots = {}
-    
+        self._used_slots = []
     def add_to_inventory(self, item):
         if (self.current_load + item.weight) <= self.carrying_capacity:
             self.item = item
@@ -21,11 +21,16 @@ class Inventory():
         
             
 
-    def equip_item(self):
-        if self.storage == []:
+    def equip_all_possible_items(self):
+        items_to_equip = self.storage[:]
+        for item in items_to_equip:
+            self.equip_item(item)
+
+    def equip_item(self, item):
+        if not self.storage:
             return "No items in inventory"
+
         slot_to_equip = ""
-        item = self.storage[0]
         if isinstance(item, Weapon):
             slot_to_equip = "Weapon"
         elif isinstance(item, Armour):
@@ -39,18 +44,11 @@ class Inventory():
                 slot_to_equip = "Legs"
             elif item.armour_piece == "Boots":
                 slot_to_equip = "Feet"
-        
-        if slot_to_equip not in self.slots:
+
+        if slot_to_equip and slot_to_equip not in self.slots:
+            # Equip the item if the slot is empty
             self.slots[slot_to_equip] = item
             self.storage.remove(item)
-        else:
-            self.storage.append(self.slots[slot_to_equip])
-            self.slots.pop(slot_to_equip)
-    
-    def equip_all_possible_items(self):
-        for item in self.storage:
-            print(item.name)
-            inventory.equip_item()
     
     def check_stored_items(self):
         stored_items = "Items in bag:\n"
@@ -60,12 +58,12 @@ class Inventory():
             elif isinstance(item, Armour):
                 stored_items = f"{stored_items}{item.armour_class} {item.name}\nSpecial Power: {item.effect}\n------------\n"
         return stored_items
-    
+        
     def check_equipped_items(self):
         equipped_items = []
-        keys = [*self.slots]
+        self._used_slots = [*self.slots]
         
-        for item in keys:
+        for item in self._used_slots:
                 if self.slots[item]:
                     if isinstance(self.slots[item], Armour):
                         if self.slots[item].is_magical:
@@ -84,6 +82,17 @@ class Inventory():
             return equipped_items_return
         else:
             return "No items equipped"
+    
+    def check_empty_slots(self):
+        possible_slots = ("Head", "Chest", "Hands", "Legs", "Feet", "Weapon")
+        empty_slots = list(possible_slots)
+        if self._used_slots != []:
+            for item in self._used_slots:
+                empty_slots.remove(item)       
+        return f"Empty Slots: {empty_slots}"
+    
+        
+
     
     #def drop_item(self, item):
 
@@ -106,5 +115,7 @@ add_n_items_to_inventory(inventory, 5)
 inventory.equip_all_possible_items()
 print(inventory.check_stored_items())
 print(inventory.check_equipped_items())
+print(inventory.check_empty_slots())
+
 
             
