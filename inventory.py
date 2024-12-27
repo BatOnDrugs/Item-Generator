@@ -1,7 +1,7 @@
 
 from item_generator import item_generator
 from item_classes import *
-
+from algs import bubble_sort_items
 
 
 class Inventory():
@@ -54,9 +54,9 @@ class Inventory():
         stored_items = "Items in bag:\n"
         for item in self.storage:
             if isinstance(item, Weapon):
-                stored_items = f"{stored_items}{item.name}\nSpecial Power: {item.effect}\n------------\n"
+                stored_items = f"{stored_items}{item.name}\nSpecial Power: {item.effect}\nDamage: {item.dmg}\nSpecial Power: {item.effect}\n------------\n"
             elif isinstance(item, Armour):
-                stored_items = f"{stored_items}{item.armour_class} {item.name}\nSpecial Power: {item.effect}\n------------\n"
+                stored_items = f"{stored_items}{item.armour_class} {item.name}\nDefense: {item.defense}\nSpecial Power: {item.effect}\n------------\n"
         return stored_items
         
     def check_equipped_items(self):
@@ -91,10 +91,28 @@ class Inventory():
                 empty_slots.remove(item)       
         return f"Empty Slots: {empty_slots}"
     
+    def sort_storage(self, sort_by = "Unspecified"):   
+        # make a list of armour pieces and a list of Weapons
+        armour_in_storage = []
+        weapons_in_storage = []
+        for i in range(len(self.storage)):
+            if isinstance(self.storage[i], Armour):
+                armour_in_storage.append(self.storage[i])
+            elif isinstance(self.storage[i], Weapon):
+                weapons_in_storage.append(self.storage[i])
+        
+        
+        if sort_by == "Unspecified":
+            sort_by = "main stat" #will sort by defense for armour and damage for weapons
+
+        armour_in_storage = bubble_sort_items(armour_in_storage, "Armour", sort_by)
+        weapons_in_storage = bubble_sort_items(weapons_in_storage, "Weapons", sort_by)
+
+        self.storage = armour_in_storage + weapons_in_storage
+        return self.storage
         
 
-    
-    #def drop_item(self, item):
+
 
 
 def add_n_items_to_inventory(inventory, n):
@@ -112,10 +130,11 @@ def add_n_items_to_inventory(inventory, n):
 
 inventory = Inventory()
 add_n_items_to_inventory(inventory, 5)
-inventory.equip_all_possible_items()
+
 print(inventory.check_stored_items())
-print(inventory.check_equipped_items())
-print(inventory.check_empty_slots())
+inventory.sort_storage()
+print(inventory.check_stored_items())
+
 
 
             
