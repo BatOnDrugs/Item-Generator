@@ -12,7 +12,6 @@ class Guy():
         self.inventory.add_n_items_to_inventory(num_items)
         print(f"Added {num_items} items to inventory!")
         self.inventory.sort_storage()
-        print(self.inventory.check_stored_items())
         self.inventory.equip_all_possible_items()
         print(self.inventory.check_equipped_items())
         self.modify_health()
