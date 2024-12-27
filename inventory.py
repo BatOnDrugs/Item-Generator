@@ -5,7 +5,7 @@ from algs import bubble_sort_items
 
 
 class Inventory():
-    def __init__(self):
+    def __init__(self, strength = 100):
         self.carrying_capacity = 100
         self.current_load = 0
         self.storage = []
@@ -57,7 +57,7 @@ class Inventory():
         stored_items = "Items in bag:\n"
         for item in self.storage:
             if isinstance(item, Weapon):
-                stored_items = f"{stored_items}{item.name}\nSpecial Power: {item.effect}\nDamage: {item.dmg}\nSpecial Power: {item.effect}\n------------\n"
+                stored_items = f"{stored_items}{item.name}\nDamage: {item.dmg}\nSpecial Power: {item.effect}\n------------\n"
             elif isinstance(item, Armour):
                 stored_items = f"{stored_items}{item.armour_class} {item.name}\nDefense: {item.defense}\nSpecial Power: {item.effect}\n------------\n"
         return stored_items
@@ -116,30 +116,31 @@ class Inventory():
 
         self.storage = armour_in_storage + weapons_in_storage
         return self.storage
+    
+    def add_n_items_to_inventory(self, n):
+        for i in range(n):
+            item = item_generator()
+            if self.add_to_inventory(item):
+                continue
+            else:
+                print("Can't carry any more items")
+                break
         
 
 
 
 
-def add_n_items_to_inventory(inventory, n):
-    for i in range(n):
-        item = item_generator()
-        if inventory.add_to_inventory(item):
-            continue
-        else:
-            print("Can't carry any more items")
-            break
     
 
 
 
 
-inventory = Inventory()
-add_n_items_to_inventory(inventory, 5)
+"""inventory = Inventory()
+inventory.add_n_items_to_inventory(5)
 
 print(inventory.check_stored_items())
 inventory.sort_storage()
-print(inventory.check_stored_items())
+print(inventory.check_stored_items())"""
 
 
 
