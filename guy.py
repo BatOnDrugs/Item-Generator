@@ -5,6 +5,7 @@ class Guy():
     def __init__(self, health, strength, name):
         self.name = name
         self.health = health
+        self.health_for_bar = health
         self.strength = strength
         self.inventory = Inventory(self.strength)
 
@@ -12,11 +13,13 @@ class Guy():
         self.inventory.add_n_items_to_inventory(num_items)
         print(f"Added {num_items} items to inventory!")
         self.inventory.sort_storage()
-        self.inventory.equip_all_possible_items()
+        self.inventory.equip_all_best_items()
         print(self.inventory.check_equipped_items())
         self.modify_health()
         print(f"Current Health is {self.health}")
         print(f"Current strength is {self.strength}")
+        
+        
         
         
 
@@ -35,13 +38,11 @@ class Guy():
         print(f"{self.name} got hit by {other.name} for {other.strength} damage!")
         self.health -= other.strength / 2
         print(f"{self.name} has {self.health} health left!")
+        
 
 
-    def health_bar(self):
-        self.health_bar = "[====================]"
-        print(self.health_bar)
+    
 
-    #def damage_health_bar(self):
 
         
         

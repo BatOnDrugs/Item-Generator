@@ -22,10 +22,11 @@ class Inventory():
         
             
     # Equips items from inventory into empty slots
-    def equip_all_possible_items(self):
+    def equip_all_best_items(self):
         items_to_equip = self.storage[:]
         for item in items_to_equip:
             self.equip_item(item)
+        self.storage = []
     
     # Equips top item from invetory into a slot
     def equip_item(self, item):
@@ -53,14 +54,15 @@ class Inventory():
             self.storage.remove(item)
     
     # returns a string listing out items in storage
-    def check_stored_items(self):
+    # For now unused cause pivoting to a game, and it's unneeded
+    """def check_stored_items(self):
         stored_items = "Items in bag:\n"
         for item in self.storage:
             if isinstance(item, Weapon):
                 stored_items = f"{stored_items}{item.name}\nDamage: {item.dmg}\nSpecial Power: {item.effect}\n------------\n"
             elif isinstance(item, Armour):
                 stored_items = f"{stored_items}{item.armour_class} {item.name}\nDefense: {item.defense}\nSpecial Power: {item.effect}\n------------\n"
-        return stored_items
+        return stored_items"""
 
     # returns a string listing equipped items   
     def check_equipped_items(self):
