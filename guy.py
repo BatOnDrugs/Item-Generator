@@ -1,8 +1,13 @@
 from inventory import Inventory
 from item_classes import Weapon, Armour
+import pygame
+from pygame.locals import *
 
-class Guy():
-    def __init__(self, health, strength, name):
+class Guy(pygame.sprite.Sprite):
+    def __init__(self, health = 100, strength = 100, name = "Guy"):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load("data/knight_1.png")
+        self.rect = self.image.get_rect()
         self.name = name
         self.health = health
         self.health_for_bar = health
@@ -47,8 +52,8 @@ class Guy():
         
         
 
-guy1 = Guy(100, 10, "Jacob")
+"""guy1 = Guy(100, 10, "Jacob")
 guy2 = Guy(100, 10, "Edward") 
 guy1.prepare_for_battle(20)
 guy2.prepare_for_battle(20)
-guy1.attack(guy2)
+guy1.attack(guy2)"""
